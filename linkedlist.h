@@ -8,12 +8,14 @@
 #define LINKEDLIST_H
 
 #include "data.h"
+#include <iostream>
 
 class LinkedList {
 
 public:
 
     LinkedList();
+    void printList(bool = false); //if bool is false, list will print forward
 
 private:
     Node *head;

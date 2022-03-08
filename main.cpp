@@ -27,6 +27,9 @@ int main() {
     LinkedList list;
     cout << "done" << endl << endl;
 
+    bool flag = false; //delete this
+    list.printList(); //delete this 
+
 /*
     cout << "checking list...\n";
     cout << "\tThere are " << list.getCount() << " nodes." << endl;

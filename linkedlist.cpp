@@ -7,7 +7,7 @@
 #include "linkedlist.h"
 
 LinkedList::LinkedList(){
-    Node *head = NULL;
+    //Node *head = NULL;
 
 
     Node *node1;
@@ -35,4 +35,13 @@ LinkedList::LinkedList(){
     node2->next = node3;  // point node2 next to node3
     node3->prev = node2;  // point node3 back to node2
     node3->next = NULL; 
+}
+
+void LinkedList::printList(bool backward){
+    Node* current = head;
+
+    while (current){
+        std::cout << current->data.id << ": " << current->data.data << std::endl;
+        current = current->next;
+    }
 }
