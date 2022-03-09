@@ -27,8 +27,12 @@ int main() {
     LinkedList list;
     cout << "done" << endl << endl;
 
-    bool flag = false; //delete this
-    list.printList(); //delete this 
+ 
+    int i = 6;
+    std::string practiceString = "yerrr";
+
+    list.addNode(i, &practiceString);
+    list.printList();
 
 /*
     cout << "checking list...\n";
