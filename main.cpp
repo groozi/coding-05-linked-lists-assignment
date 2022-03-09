@@ -29,9 +29,13 @@ int main() {
 
  
     int i = 6;
+    int x = 4;
     std::string practiceString = "yerrr";
+    std::string practiceString2 = "hello";
 
     list.addNode(i, &practiceString);
+    list.printList();
+    list.addNode(x, &practiceString2);
     list.printList();
 
 /*
