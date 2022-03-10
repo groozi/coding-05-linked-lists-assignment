@@ -30,13 +30,28 @@ int main() {
  
     int i = 6;
     int x = 4;
-    std::string practiceString = "yerrr";
-    std::string practiceString2 = "hello";
+    int y = 12;
+    int h = 1;
+    std::string practiceString = "helllllo";
+    std::string practiceString2 = "worldddd...";
+    std::string practiceString3 = ":)";
+    std::string practiceString4 = " wooo";
+
+
 
     list.addNode(i, &practiceString);
     list.printList();
+    std::cout << std::endl;
     list.addNode(x, &practiceString2);
     list.printList();
+    std::cout << std::endl;
+    list.addNode(y, &practiceString3);
+    list.printList();
+    std::cout << std::endl;
+     list.addNode(h, &practiceString4);
+    list.printList();
+    std::cout << std::endl;
+
 
 /*
     cout << "checking list...\n";

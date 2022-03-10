@@ -21,6 +21,7 @@ public:
 private:
     Node *head;
     //void addHead(int, string*, Node**);
+    //void prepNode(int, string*, Node*);
 
 
 };

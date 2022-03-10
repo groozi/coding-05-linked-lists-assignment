@@ -15,67 +15,46 @@ bool LinkedList::addNode(int id , string *data){
     bool added = false;
 
     if (id > 0 && !data->empty()){
-        //preparing the new node to be added
+
         Node* newNode = new Node();
-        newNode->data.id = id;
-        newNode->data.data = *data;
+            newNode->data.id = id;
+            newNode->data.data = *data;
 
-       // //searching for place to add the node
-       // while (id < position->data.id && position->next->data.id != id){
-       //     position = position->next;
-      //  }
+        if (position == NULL || id < position->data.id){
 
-        //are we at the head?
-        if (position == NULL){
-            newNode->prev = NULL;
-            newNode->next = NULL;
-            head = newNode;
-            added = true;
-            std::cout << "executed first if" << std::endl;
-
-        //are we at the tail?
-        } else if(position->next == NULL){
-            newNode->next = NULL;
-            newNode->prev = position;
-            position->next = newNode;
-            added = true;
-            std::cout << "executed else if" << std::endl;
-
-        } else{
-            while (id < position->data.id && position->next->data.id != id){
-            position = position->next;
+            if(position == NULL){
+                newNode->prev = NULL;
+                newNode->next = NULL;
+                head = newNode;
+                added = true;
+            } else {
+                head->prev = newNode;
+                newNode->next = head;
+                newNode->prev = NULL;
+                head = newNode;
+                added = true;
             }
-
-            newNode->next = position;
-            newNode->prev = position->prev;
-            position->prev->next = newNode;
-            position->prev = newNode;
-            std::cout << "executed else position is " << position << std::endl;
-
-        } 
-
+        }else {
+            //looping through data to check if id i less than current position and checking for dupes
+            while (id > position->data.id && position->next != NULL){
+                position = position->next;
+            }
+            
+            if (id == position->data.id){
+                added = false;
+                std::cout << "Could not add node. Id already exists" << std::endl;
+            }else {
+                newNode->next = NULL;
+                newNode->prev = position;
+                position->next = newNode;
+                added = true;
+            }
+        }
     }else{
         std::cout << "Could not add node" << std::endl;
     } 
     return added;
 }
-
-/*   
-
-
- //preparing the new node to be added
-    Node* newNode = new Node();
-    newNode->data.id = id;
-    newNode->data.data = *data;
-
-   
-    newNode->prev = NULL;
-    newNode->next = NULL;
-    head = newNode;
-
-    */
-
-
 
 
 
@@ -93,13 +72,22 @@ void LinkedList::addHead(int id, string *data, Node** head){
 */
 
 
+/*
+void LinkedList::prepNode(int id, string *data, Node *passedNode){
+        passedNode = new Node();
+        passedNode->data.id = id;
+        passedNode->data.data = *data;
+
+}
+*/
+
 
 
 void LinkedList::printList(){
     Node* current = head;
 
     while (current){
-        std::cout << current->data.id << ": " << current->data.data << std::endl;
+        std::cout << current->data.id << ": " << current->data.data << " " << current<< std::endl;
         current = current->next;
     }
 }
