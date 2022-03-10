@@ -12,38 +12,42 @@ LinkedList::LinkedList(){
 
 bool LinkedList::addNode(int id , string *data){
     Node* position = head;
+    //Node **newNode2;
+
     bool added = false;
 
     if (id > 0 && !data->empty()){
 
-        Node* newNode = new Node();
-            newNode->data.id = id;
-            newNode->data.data = *data;
+
+        
+        //Node* newNode = new Node();
+         //   newNode->data.id = id;
+         //   newNode->data.data = *data;
+        
 
         if (position == NULL || id < position->data.id){
+            addHead(id, data);
+            added = true;
 
-            if(position == NULL){
-                newNode->prev = NULL;
-                newNode->next = NULL;
-                head = newNode;
-                added = true;
-            } else {
-                head->prev = newNode;
-                newNode->next = head;
-                newNode->prev = NULL;
-                head = newNode;
-                added = true;
-            }
         }else {
+
             //looping through data to check if id i less than current position and checking for dupes
             while (id > position->data.id && position->next != NULL){
                 position = position->next;
             }
-            
             if (id == position->data.id){
                 added = false;
                 std::cout << "Could not add node. Id already exists" << std::endl;
-            }else {
+
+            }else if(id > position->data.id && position->next == NULL){
+                addTail(id, data, position);
+                added = true;
+
+            }else{
+                Node* newNode = new Node();
+                newNode->data.id = id;
+                newNode->data.data = *data;
+
                 newNode->next = NULL;
                 newNode->prev = position;
                 position->next = newNode;
@@ -51,6 +55,8 @@ bool LinkedList::addNode(int id , string *data){
             }
         }
     }else{
+
+
         std::cout << "Could not add node" << std::endl;
     } 
     return added;
@@ -59,27 +65,49 @@ bool LinkedList::addNode(int id , string *data){
 
 
 
-/*
-void LinkedList::addHead(int id, string *data, Node** head){
-    Node* newNode = new Node();
+
+void LinkedList::addHead(int id, string *data){
+    Node* newNode = new Node;
+    Node* position = head;
+
     newNode->data.id = id;
     newNode->data.data = *data;
-    newNode->next = *head;
-    *head = newNode;
 
+    if (position == NULL){
+        newNode->prev = NULL;
+        newNode->next = NULL;
+        //head = newNode;
+    } else{
+        newNode->prev = NULL;
+        newNode->next = position;
+        position->prev = newNode;
+    }
+   head = newNode;
 }
 
-*/
+void LinkedList::addTail(int id, string *data, Node *nodePtr){
+    //prepping the new node
+    Node *newNode = new Node;
+    newNode->data.id = id;
+    newNode->data.data = *data;
+
+    newNode->next = NULL;
+    newNode->prev = nodePtr;
+    nodePtr->next = newNode;
+}
+
+
 
 
 /*
-void LinkedList::prepNode(int id, string *data, Node *passedNode){
-        passedNode = new Node();
-        passedNode->data.id = id;
-        passedNode->data.data = *data;
-
+void LinkedList::prepNode(int id, string *data, Node **nodeHolder){
+    Node *newNode = new Node;
+    newNode->data.id = id;
+    newNode->data.data = *data;
+    *nodeHolder = newNode;
 }
 */
+
 
 
 
