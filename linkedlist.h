@@ -20,11 +20,7 @@ public:
 
 private:
     Node *head;
-    void addHead(int, string*);
-    void addTail(int, string*, Node*);
-    //void addMiddle(int, string*, Node*);
-    //void prepNode(int, string*, Node**);
-
+  
 
 };
 

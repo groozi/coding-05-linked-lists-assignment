@@ -27,22 +27,24 @@ int main() {
     LinkedList list;
     cout << "done" << endl << endl;
 
- 
     int i = 6;
     int x = 4;
     int y = 12;
     int h = 1;
-    //int l = 2;
+    int o = 2;
+    
     
     std::string practiceString = "helllllo";
     std::string practiceString2 = "worldddd...";
     std::string practiceString3 = ":)";
     std::string practiceString4 = " wooo";
+    std::string practiceString5 = " woooppppp";
     
-
 
     list.addNode(i, &practiceString);
     list.printList();
+
+    
     std::cout << std::endl;
     list.addNode(x, &practiceString2);
     list.printList();
@@ -53,10 +55,8 @@ int main() {
     list.addNode(h, &practiceString4);
     list.printList();
     std::cout << std::endl;
-
-    //list.addNode(l, &practiceString4);
-    //list.printList();
-    //std::cout << std::endl;
+    list.addNode(o, &practiceString5);
+    list.printList();
     
 
 

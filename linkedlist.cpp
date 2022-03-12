@@ -7,37 +7,61 @@
 #include "linkedlist.h"
 
 LinkedList::LinkedList(){
-    Node *head = NULL;
+    head = NULL;
 }
 
 bool LinkedList::addNode(int id , string *data){
-    Node* position = head;
-    bool added = false;
+    bool added; //will tell us if node added successfully or not
 
-    if (id > 0 && !data->empty()){
-        //Node **nodeHolder;
+    //checks if id is greater than 0 and the string is not empty
+    if (id > 0 && *data != "/0"){
 
+        Node* position = head;
+
+        //checks if current head is null (list is empty) or if id of new node is less than head's id
         if (position == NULL || id < position->data.id){
-            //prepNode(id, data, nodeHolder);
-            addHead(id, data);
+
+            //if any of these are true we are adding a new head
+
+            //creating and assigning id and data to new node
+            Node* newNode = new Node;
+            newNode->data.id = id;
+            newNode->data.data = *data;
+
+            //if list is empty, new node next and prev point to null
+            if (position == NULL){
+                newNode->prev = NULL;
+                newNode->next = NULL;
+            
+            //list is not empty but we are adding new node to front of list
+            }else{
+                newNode->prev = NULL;
+                newNode->next = position;
+                position->prev = newNode;
+
+            }
+
+            head = newNode;
             added = true;
 
         }else{
-            //looping through data to check if id i less than current position and checking for dupes
+            Node* position = head;
+
+            //looping through data to check if id i less than current position and making sure we are not at tail
             while (id > position->data.id && position->next != NULL){
                 position = position->next;
             }
+
+            //if id is equal to an id we already have, don't include in list
             if (id == position->data.id){
                 added = false;
                 std::cout << "Could not add node. Id already exists" << std::endl;
 
+            //is id greater than the id in the current position and we ARE at the end of the list? add a new tail
             }else if(id > position->data.id && position->next == NULL){
-                addTail(id, data, position);
-                added = true;
-            }else{
-                //addMiddle(id, data, position);
-                
-                Node* newNode = new Node;
+            
+                //making and prepping the new node
+                Node *newNode = new Node;
                 newNode->data.id = id;
                 newNode->data.data = *data;
 
@@ -45,8 +69,20 @@ bool LinkedList::addNode(int id , string *data){
                 newNode->prev = position;
                 position->next = newNode;
                 added = true;
-                //addMiddle(id, data, position);
+
+            }else{
+                //in any other case we are adding to middle of the list
                 
+                //making and prepping the new node
+                Node* newNode = new Node;
+                newNode->data.id = id;
+                newNode->data.data = *data;
+
+                newNode->next = position;
+                newNode->prev = position->prev;
+                position->prev->next = newNode;
+                position->prev = newNode;
+                added = true;
             }
         }
     }else{
@@ -54,84 +90,6 @@ bool LinkedList::addNode(int id , string *data){
     } 
     return added;
 }
-
-void LinkedList::addHead(int id, string *data){
-    /*
-    Node* position = head;
-    prepNode(id, data, nodeHolder);
-    
-    if (position == NULL){
-        *nodeHolder->prev = NULL;
-        *nodeHolder->next = NULL;
-        //head = newNode;
-    } else{
-        *nodeHolder->prev = NULL;
-        *nodeHolder->next = position;
-        position->prev = *nodeHolder;
-    }
-   head = newNode;
-    */
-
-    Node* newNode = new Node;
-    Node* position = head;
-
-    newNode->data.id = id;
-    newNode->data.data = *data;
-
-    if (position == NULL){
-        newNode->prev = NULL;
-        newNode->next = NULL;
-        //head = newNode;
-    } else{
-        newNode->prev = NULL;
-        newNode->next = position;
-        position->prev = newNode;
-    }
-   head = newNode;
-   
-}
-
-void LinkedList::addTail(int id, string *data, Node *nodePtr){
-    //prepping the new node
-    Node *newNode = new Node;
-    newNode->data.id = id;
-    newNode->data.data = *data;
-
-    newNode->next = NULL;
-    newNode->prev = nodePtr;
-    nodePtr->next = newNode;
-}
-
-/*
-void LinkedList::addMiddle(int id, string *data, Node* nodePtr){
-    std::cout << "fails in the addMiddle function" << std::endl;
-    Node *newNode = new Node;
-    newNode->data.id = id;
-    newNode->data.data = *data;
-
-
-    newNode->prev = nodePtr->prev;
-    newNode->next = nodePtr;
-    nodePtr->prev->next = newNode;
-    nodePtr->prev = newNode;
-
-    //newNode->next = nodePtr;
-    //newNode->prev = nodePtr->prev;
-    //nodePtr->prev->next = newNode;
-    //nodePtr->prev = newNode;
-
-}
-
-*/
-
-/*
-void LinkedList::prepNode(int id, string* data, Node** nodeHolder){
-    Node *newNode = new Node;
-    newNode->data.id = id;
-    newNode->data.data = *data;
-    *nodeHolder = newNode;
-}
-*/
 
 void LinkedList::printList(){
     Node* current = head;
