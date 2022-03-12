@@ -91,11 +91,26 @@ bool LinkedList::addNode(int id , string *data){
     return added;
 }
 
-void LinkedList::printList(){
+void LinkedList::printList(bool flag){
     Node* current = head;
 
-    while (current){
-        std::cout << current->data.id << ": " << current->data.data << " " << current<< std::endl;
-        current = current->next;
+    if (flag == true){
+        while(current->next != NULL){
+            current = current->next;
+        }
+        while (current){
+            std::cout << current->data.id << ": " << current->data.data << " " << current<< std::endl;
+            current = current->prev;
+        }
+
     }
+
+    //if bool is false, print forward 
+    else {
+        while (current){
+            std::cout << current->data.id << ": " << current->data.data << " " << current<< std::endl;
+            current = current->next;
+        }
+    }
+
 }

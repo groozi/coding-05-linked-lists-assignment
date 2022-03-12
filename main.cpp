@@ -41,6 +41,8 @@ int main() {
     std::string practiceString5 = " woooppppp";
     
 
+    bool flag = true;
+
     list.addNode(i, &practiceString);
     list.printList();
 
@@ -56,7 +58,7 @@ int main() {
     list.printList();
     std::cout << std::endl;
     list.addNode(o, &practiceString5);
-    list.printList();
+    list.printList(flag);
     
 
 
