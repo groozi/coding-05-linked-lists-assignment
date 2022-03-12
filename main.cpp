@@ -41,7 +41,7 @@ int main() {
     std::string practiceString5 = " woooppppp";
     
 
-    bool flag = true;
+    bool flag = false;
 
     list.addNode(i, &practiceString);
     list.printList();

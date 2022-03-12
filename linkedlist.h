@@ -20,6 +20,7 @@ public:
 
 private:
     Node *head;
+    void addHead(int, string*);
   
 
 };

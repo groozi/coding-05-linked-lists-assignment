@@ -21,6 +21,9 @@ bool LinkedList::addNode(int id , string *data){
         //checks if current head is null (list is empty) or if id of new node is less than head's id
         if (position == NULL || id < position->data.id){
 
+            addHead(id, data);
+            /*
+
             //if any of these are true we are adding a new head
 
             //creating and assigning id and data to new node
@@ -43,6 +46,8 @@ bool LinkedList::addNode(int id , string *data){
 
             head = newNode;
             added = true;
+
+            */
 
         }else{
             Node* position = head;
@@ -102,7 +107,6 @@ void LinkedList::printList(bool flag){
             std::cout << current->data.id << ": " << current->data.data << " " << current<< std::endl;
             current = current->prev;
         }
-
     }
 
     //if bool is false, print forward 
@@ -112,5 +116,28 @@ void LinkedList::printList(bool flag){
             current = current->next;
         }
     }
-
 }
+
+void LinkedList::addHead(int id, string *data){
+    Node* newNode = new Node;
+    newNode->data.id = id;
+    newNode->data.data = *data;
+
+    if (head == NULL){
+        newNode->prev = NULL;
+        newNode->next = NULL;
+    } else {
+        newNode->prev = NULL;
+        newNode->next = head;
+        head->prev = newNode;
+    }
+    head = newNode;
+}
+
+
+
+
+
+
+
+
