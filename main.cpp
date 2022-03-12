@@ -32,11 +32,13 @@ int main() {
     int x = 4;
     int y = 12;
     int h = 1;
+    //int l = 2;
+    
     std::string practiceString = "helllllo";
     std::string practiceString2 = "worldddd...";
     std::string practiceString3 = ":)";
     std::string practiceString4 = " wooo";
-
+    
 
 
     list.addNode(i, &practiceString);
@@ -48,9 +50,15 @@ int main() {
     list.addNode(y, &practiceString3);
     list.printList();
     std::cout << std::endl;
-     list.addNode(h, &practiceString4);
+    list.addNode(h, &practiceString4);
     list.printList();
     std::cout << std::endl;
+
+    //list.addNode(l, &practiceString4);
+    //list.printList();
+    //std::cout << std::endl;
+    
+
 
 
 /*
