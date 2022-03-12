@@ -64,6 +64,10 @@ bool LinkedList::addNode(int id , string *data){
 
             //is id greater than the id in the current position and we ARE at the end of the list? add a new tail
             }else if(id > position->data.id && position->next == NULL){
+
+                addTail(id, data, position);
+
+                /*
             
                 //making and prepping the new node
                 Node *newNode = new Node;
@@ -74,9 +78,14 @@ bool LinkedList::addNode(int id , string *data){
                 newNode->prev = position;
                 position->next = newNode;
                 added = true;
+                */
+                added = true;
 
             }else{
                 //in any other case we are adding to middle of the list
+                addMiddle(id, data, position);
+
+                /*
                 
                 //making and prepping the new node
                 Node* newNode = new Node;
@@ -87,6 +96,7 @@ bool LinkedList::addNode(int id , string *data){
                 newNode->prev = position->prev;
                 position->prev->next = newNode;
                 position->prev = newNode;
+                */
                 added = true;
             }
         }
@@ -134,8 +144,27 @@ void LinkedList::addHead(int id, string *data){
     head = newNode;
 }
 
+void LinkedList::addTail(int id, string *data, Node* position){
+    Node* newNode = new Node;
+    newNode->data.id = id;
+    newNode->data.data = *data;
 
+    newNode->next = NULL;
+    newNode->prev = position;
+    position->next = newNode;
+}
 
+void LinkedList::addMiddle(int id, string* data, Node* position){
+    Node* newNode = new Node;
+    newNode->data.id = id;
+    newNode->data.data = *data;
+
+    newNode->next = position;
+    newNode->prev = position->prev;
+    position->prev->next = newNode;
+    position->prev = newNode;
+
+}
 
 
 
