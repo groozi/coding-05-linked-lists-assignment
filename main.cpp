@@ -65,17 +65,19 @@ int main() {
 
 
 
-    int num = 1;
+    int num1 = 2;
 
-    cout << "attempting to delete node.... 1" << endl;
-    list.deleteNode(num);
-    if (list.deleteNode(num)){
+    cout << "attempting to delete node.... " << num1 << endl;
+    list.deleteNode(num1);
+    if (list.deleteNode(num1)){
         cout << "Node deleted" << endl;
     }
 
     list.printList(flag);
 
     Data* emptyStruct = new Data;
+    int num = 1;
+
 
     cout << endl;
     cout << "testing getNode... getting node " << num << endl;

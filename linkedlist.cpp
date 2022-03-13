@@ -90,6 +90,7 @@ bool LinkedList::deleteNode(int id){
             position = position->next;
         }
 
+        //couldn't find the node with id
         if(id != position->data.id){
             deleted = false;
 
@@ -106,10 +107,6 @@ bool LinkedList::deleteNode(int id){
             position->next->prev = NULL;
             delete(position);
             deleted = true;
-        }
-        //checks if the head is
-        else if(id == position->data.id && position->prev == NULL && position->next == NULL){
-
         }
 
         //are we deleting at end of list and must establish a new tail?
@@ -148,7 +145,6 @@ bool LinkedList::getNode(int id, Data* dataStruct){
     Node* position = head;
     bool gotNode;
 
-    
     //compare id to current node
     if (id == position->data.id){
         dataStruct->id = position->data.id;
