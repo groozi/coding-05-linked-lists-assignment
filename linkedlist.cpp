@@ -57,8 +57,11 @@ bool LinkedList::addNode(int id , string *data){
 
 void LinkedList::printList(bool backward){
     Node* position = head;
+    if(position == NULL){
+        std::cout << "Could not print list, list is empty" << std::endl;
+    }
 
-    if (backward == true){
+    else if (backward == true){
         while(position->next != NULL){
             position = position->next;
         }

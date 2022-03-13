@@ -26,94 +26,11 @@ int main() {
     cout << "creating the linked list...";
     LinkedList list;
     cout << "done" << endl << endl;
-
-    int i = 6;
-    int x = 4;
-    int y = 12;
-    int h = 1;
-    int o = 2;
     
-    
-    std::string practiceString = "helllllo";
-    std::string practiceString2 = "worldddd...";
-    std::string practiceString3 = ":)";
-    std::string practiceString4 = " wooo";
-    std::string practiceString5 = " woooppppp";
-    
-
-    bool flag = false;
-
-    list.addNode(i, &practiceString);
-    list.printList(flag);
-    std::cout << std::endl;
-    list.addNode(x, &practiceString2);
-    list.printList(flag);
-    std::cout << std::endl;
-    list.addNode(y, &practiceString3);
-    list.printList(flag);
-    std::cout << std::endl;
-    list.addNode(h, &practiceString4);
-    list.printList(flag);
-    std::cout << std::endl;
-    list.addNode(o, &practiceString5);
-    list.printList(flag);
-    
-
     cout << "checking list...\n";
     cout << "\tThere are " << list.getCount() << " nodes." << endl;
+    list.printList();
     cout << endl;
-
-
-
-    int num1 = 2;
-
-    cout << "attempting to delete node.... " << num1 << endl;
-    list.deleteNode(num1);
-    if (list.deleteNode(num1)){
-        cout << "Node deleted" << endl;
-    }
-
-    list.printList(flag);
-
-    Data* emptyStruct = new Data;
-    int num = 1;
-
-
-    cout << endl;
-    cout << "testing getNode... getting node " << num << endl;
-    if (list.getNode(num, emptyStruct)){
-        cout << "got node successful... " << emptyStruct->id << " " << emptyStruct->data << endl;
-    } else {
-        cout << "got node unsuccessful... " << endl;
-    }
-
-    int num3 = 6;
-    cout << endl;
-    cout << "testing exists... checking if node " << num3 << " exists" << endl;
-    if (list.exists(num3)){
-        cout << "exists successful... " << endl;
-    } else {
-        cout << "exists unsuccessful... " << endl;
-    }
-
-
-
-    cout << "attempting to clear the linked list..." << endl;
-    if (list.clearList()){
-        cout << "clear list successfull" << endl;
-    } else {
-        cout << "could not clear the list" << endl;
-    }
-
-    list.printList(flag);
-
-    
-
-    
-    
-
-
-    /*
 
     //adding all the test data to the list
     for (int i = 0; i < numTestData; i++) {
@@ -127,7 +44,6 @@ int main() {
     }
     cout << endl;
     
-
     cout << "checking list forward...\n";
     cout << "\tThere are " << list.getCount() << " nodes." << endl;
     list.printList();
@@ -197,7 +113,6 @@ int main() {
     list.printList();
     cout << endl;
 
-*/
 
     return 0;
 }
