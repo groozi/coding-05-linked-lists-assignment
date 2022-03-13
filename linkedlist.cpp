@@ -55,10 +55,10 @@ bool LinkedList::addNode(int id , string *data){
     return added;
 }
 
-void LinkedList::printList(bool flag){
+void LinkedList::printList(bool backward){
     Node* current = head;
 
-    if (flag == true){
+    if (backward == true){
         while(current->next != NULL){
             current = current->next;
         }
@@ -118,14 +118,46 @@ bool LinkedList::deleteNode(int id){
     Node* position = head;
     bool deleted; 
 
-    if (id < 0 || position == NULL){
+    if (position == NULL){
         deleted = false;
+        std::cout << "No nodes to delete..empty list" << std::endl;
     }
     else{
         while (id != position->data.id && position->next != NULL){
             position = position->next;
         }
+        //are we deleting the current head?
+        if (position->prev == NULL){
 
+            head = position->next;
+            position->next->prev = NULL;
+            delete(position);
+
+            /*
+            position->next->prev = NULL;
+            position->next = head;
+            delete(position);
+            */
+            deleted = true;
+        }
+        //are we deleting at end of list and must establish a new tail?
+        else if(position->next == NULL){
+            position->prev->next = NULL;
+            delete(position);
+            deleted = true;
+        }
+        //we are deleting from the middle of the list
+        else{
+            position->prev->next = position->next;
+            position->next->prev = position->prev;
+            delete(position);
+            deleted = true;
+
+
+        }
+
+
+        /*
         if (id == position->data.id){
             position->prev->next = position->next;
             position->next->prev = position->prev;
@@ -134,6 +166,7 @@ bool LinkedList::deleteNode(int id){
         } else{
             deleted = false;
         }
+        */
     }
 
     return deleted;

@@ -44,36 +44,37 @@ int main() {
     bool flag = false;
 
     list.addNode(i, &practiceString);
-    list.printList();
-
-    
+    list.printList(flag);
     std::cout << std::endl;
     list.addNode(x, &practiceString2);
-    list.printList();
+    list.printList(flag);
     std::cout << std::endl;
     list.addNode(y, &practiceString3);
-    list.printList();
+    list.printList(flag);
     std::cout << std::endl;
     list.addNode(h, &practiceString4);
-    list.printList();
+    list.printList(flag);
     std::cout << std::endl;
     list.addNode(o, &practiceString5);
     list.printList(flag);
     
 
-
-
-
     cout << "checking list...\n";
     cout << "\tThere are " << list.getCount() << " nodes." << endl;
-    list.printList();
     cout << endl;
 
-    int num = 12;
 
-    cout << "attempting to delete node.... 12" << endl;
+
+    int num = 1;
+
+    cout << "attempting to delete node.... 1" << endl;
     list.deleteNode(num);
+    if (list.deleteNode(num)){
+        cout << "Node deleted" << endl;
+    }
+
     list.printList(flag);
+    
 
 
     /*
