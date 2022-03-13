@@ -19,6 +19,7 @@ public:
     bool addNode(int, string*); 
     int getCount();
     bool deleteNode(int); 
+    bool getNode(int, Data*);
 
 private:
     Node *head;

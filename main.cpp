@@ -74,6 +74,16 @@ int main() {
     }
 
     list.printList(flag);
+
+    Data* emptyStruct = new Data;
+
+    cout << endl;
+    cout << "testing getNode... getting node " << num << endl;
+    if (list.getNode(num, emptyStruct)){
+        cout << "got node successful... " << emptyStruct->id << " " << emptyStruct->data << endl;
+    } else {
+        cout << "got node unsuccessful... " << endl;
+    }
     
 
 

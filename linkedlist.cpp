@@ -76,42 +76,6 @@ void LinkedList::printList(bool backward){
     }
 }
 
-void LinkedList::addHead(int id, string *data){
-    Node* newNode = new Node;
-    newNode->data.id = id;
-    newNode->data.data = *data;
-
-    if (head == NULL){
-        newNode->prev = NULL;
-        newNode->next = NULL;
-    } else {
-        newNode->prev = NULL;
-        newNode->next = head;
-        head->prev = newNode;
-    }
-    head = newNode;
-}
-
-void LinkedList::addTail(int id, string *data, Node* position){
-    Node* newNode = new Node;
-    newNode->data.id = id;
-    newNode->data.data = *data;
-
-    newNode->next = NULL;
-    newNode->prev = position;
-    position->next = newNode;
-}
-
-void LinkedList::addMiddle(int id, string* data, Node* position){
-    Node* newNode = new Node;
-    newNode->data.id = id;
-    newNode->data.data = *data;
-
-    newNode->next = position;
-    newNode->prev = position->prev;
-    position->prev->next = newNode;
-    position->prev = newNode;
-}
 
 bool LinkedList::deleteNode(int id){
     Node* position = head;
@@ -177,6 +141,76 @@ int LinkedList::getCount(){
         } 
     }
     return count;
+}
+
+bool LinkedList::getNode(int id, Data* dataStruct){
+    //begin at the head
+    Node* position = head;
+    bool gotNode;
+
+    
+    //compare id to current node
+    if (id == position->data.id){
+        dataStruct->id = position->data.id;
+        dataStruct->data = position->data.data;
+        gotNode = true;
+    } else {
+        while(id != position->data.id && position->next!= NULL){
+            position = position->next;
+        }
+
+        if (id == position->data.id){
+            dataStruct->id = position->data.id;
+            dataStruct->data = position->data.data;
+            gotNode = true;
+        } 
+        else{
+            gotNode = false;
+        }
+
+    }
+
+        return gotNode;
+}
+
+
+
+
+void LinkedList::addHead(int id, string *data){
+    Node* newNode = new Node;
+    newNode->data.id = id;
+    newNode->data.data = *data;
+
+    if (head == NULL){
+        newNode->prev = NULL;
+        newNode->next = NULL;
+    } else {
+        newNode->prev = NULL;
+        newNode->next = head;
+        head->prev = newNode;
+    }
+    head = newNode;
+}
+
+void LinkedList::addTail(int id, string *data, Node* position){
+    Node* newNode = new Node;
+    newNode->data.id = id;
+    newNode->data.data = *data;
+
+    newNode->next = NULL;
+    newNode->prev = position;
+    position->next = newNode;
+}
+
+void LinkedList::addMiddle(int id, string* data, Node* position){
+    Node* newNode = new Node;
+    newNode->data.id = id;
+    newNode->data.data = *data;
+
+    newNode->next = position;
+    newNode->prev = position->prev;
+    position->prev->next = newNode;
+    position->prev = newNode;
 }
 
 
