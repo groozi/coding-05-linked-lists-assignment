@@ -31,7 +31,6 @@ private:
     void addHead(int, string*, Node*, Node*);
     void addTail(int, string*, Node*, Node*);
     void addMiddle(int, string*, Node*, Node*);
-    
 };
 
 #endif //LINKEDLIST_H
