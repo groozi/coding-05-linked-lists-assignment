@@ -20,6 +20,7 @@ public:
     int getCount();
     bool deleteNode(int); 
     bool getNode(int, Data*);
+    bool exists(int);
 
 private:
     Node *head;

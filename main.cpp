@@ -86,6 +86,16 @@ int main() {
     } else {
         cout << "got node unsuccessful... " << endl;
     }
+
+    int num3 = 6;
+    cout << endl;
+    cout << "testing exists... checking if node " << num3 << " exists" << endl;
+    if (list.exists(num3)){
+        cout << "exists successful... " << endl;
+    } else {
+        cout << "exists unsuccessful... " << endl;
+    }
+    
     
 
 

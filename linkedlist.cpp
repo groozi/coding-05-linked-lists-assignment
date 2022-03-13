@@ -163,10 +163,28 @@ bool LinkedList::getNode(int id, Data* dataStruct){
         else{
             gotNode = false;
         }
-
     }
-
         return gotNode;
+}
+
+bool LinkedList::exists(int id){
+    bool nodeFound; 
+    Node* position = head;
+
+    if (id == position->data.id){
+        nodeFound = true;
+    } else {
+        while(id != position->data.id && position->next!= NULL){
+            position = position->next;
+        }
+        if (id == position->data.id){
+            nodeFound = true;
+        } 
+        else{
+            nodeFound = false;
+        }
+    }
+    return nodeFound;
 }
 
 
