@@ -15,7 +15,7 @@ class LinkedList {
 public:
 
     LinkedList();
-    //~LinkedList();
+    ~LinkedList();
     void printList(bool = false); //if bool is false, list will print forward
     bool addNode(int, string*); 
     int getCount();
@@ -26,9 +26,10 @@ public:
 
 private:
     Node *head;
-    void addHead(int, string*);
+    void addHead(int, string*, Node*, Node*);
     void addTail(int, string*, Node*);
     void addMiddle(int, string*, Node*);
+    void prepNode(int, string*, Node**);
 
 };
 

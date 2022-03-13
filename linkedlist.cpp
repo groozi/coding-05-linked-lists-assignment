@@ -10,6 +10,10 @@ LinkedList::LinkedList(){
     head = NULL;
 }
 
+LinkedList::~LinkedList(){
+    clearList();
+}
+
 bool LinkedList::addNode(int id , string *data){
     bool added; //will tell us if node added successfully or not
 
@@ -17,11 +21,11 @@ bool LinkedList::addNode(int id , string *data){
     if (id > 0 && *data != "/0"){
 
         Node* position = head;
+        Node **nodeHolder;
 
         //checks if current head is null (list is empty) or if id of new node is less than head's id
         if (position == NULL || id < position->data.id){
-
-            addHead(id, data);
+            addHead(id, data, position, *nodeHolder);
             added = true;
 
         }else{
@@ -58,7 +62,7 @@ bool LinkedList::addNode(int id , string *data){
 void LinkedList::printList(bool backward){
     Node* position = head;
     if(position == NULL){
-        std::cout << "Could not print list, list is empty" << std::endl;
+        std::cout << "List is empty" << std::endl;
     }
 
     else if (backward == true){
@@ -200,19 +204,34 @@ bool LinkedList::clearList(){
         position = position->next;
     }
     delete (head);
+
     if (head==NULL){
         listCleared = true;
     }
-
     return listCleared;
 }
 
 
 
-void LinkedList::addHead(int id, string *data){
+void LinkedList::addHead(int id, string *data, Node* position, Node* nodeHolder){
+    prepNode(id, data, &nodeHolder);
+
+    if (position == NULL){
+        position->prev = NULL;
+        position->next = NULL;
+    } else{
+        position->prev = NULL;
+        position->next = head;
+        head->prev = nodeHolder;
+    }
+
+    head = nodeHolder;
+
+    /*
     Node* newNode = new Node;
     newNode->data.id = id;
     newNode->data.data = *data;
+    
 
     if (head == NULL){
         newNode->prev = NULL;
@@ -223,6 +242,7 @@ void LinkedList::addHead(int id, string *data){
         head->prev = newNode;
     }
     head = newNode;
+    */
 }
 
 void LinkedList::addTail(int id, string *data, Node* position){
@@ -246,8 +266,14 @@ void LinkedList::addMiddle(int id, string* data, Node* position){
     position->prev = newNode;
 }
 
+void LinkedList::prepNode(int id, string *data, Node** nodeHolder){
+    Node *newNode = new Node;
+    newNode->data.id = id;
+    newNode->data.data = *data;
+    *nodeHolder = newNode;
 
+    //not sure if you need this line~ newNode->next = NULL;
 
-
+}
 
 
