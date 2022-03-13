@@ -15,46 +15,35 @@ LinkedList::~LinkedList(){
 }
 
 bool LinkedList::addNode(int id , string *data){
-    bool added; //will tell us if node added successfully or not
+    bool added;
 
-    //checks if id is greater than 0 and the string is not empty
     if (id > 0 && *data != "/0"){
-
         Node* position = head;
         Node **nodeHolder;
 
-        //checks if current head is null (list is empty) or if id of new node is less than head's id
+        //if list is empty or if id of new node is less than position's id add a new head
         if (position == NULL || id < position->data.id){
             addHead(id, data, position, *nodeHolder);
             added = true;
-
         }else{
-            Node* position = head;
-
-            //looping through data to check if id i less than current position and making sure we are not at tail
+            //search for place to add node
             while (id > position->data.id && position->next != NULL){
                 position = position->next;
             }
-
-            //if id is equal to an id we already have, don't include in list
             if (id == position->data.id){
                 added = false;
-                std::cout << "Could not add node. Id already exists" << std::endl;
-
-            //is id greater than the id in the current position and we ARE at the end of the list? add a new tail
+            //if id is greater than position's id and we ARE at the end of the list, add a new tail
             }else if(id > position->data.id && position->next == NULL){
-
-                addTail(id, data, position);
+                addTail(id, data, position, *nodeHolder);
                 added = true;
-
             }else{
-                //in any other case we are adding to middle of the list
-                addMiddle(id, data, position);
+                //in any other case we add to middle of the list
+                addMiddle(id, data, position, *nodeHolder);
                 added = true;
             }
         }
     }else{
-        std::cout << "Could not add node" << std::endl;
+        added = false;
     } 
     return added;
 }
@@ -217,12 +206,12 @@ void LinkedList::addHead(int id, string *data, Node* position, Node* nodeHolder)
     prepNode(id, data, &nodeHolder);
 
     if (position == NULL){
-        position->prev = NULL;
-        position->next = NULL;
+        nodeHolder->prev = NULL;
+        nodeHolder->next = NULL;
     } else{
-        position->prev = NULL;
-        position->next = head;
-        head->prev = nodeHolder;
+        nodeHolder->prev = NULL;
+        nodeHolder->next = position;
+        position->prev = nodeHolder;
     }
 
     head = nodeHolder;
@@ -245,7 +234,14 @@ void LinkedList::addHead(int id, string *data, Node* position, Node* nodeHolder)
     */
 }
 
-void LinkedList::addTail(int id, string *data, Node* position){
+void LinkedList::addTail(int id, string *data, Node* position, Node* nodeHolder){
+
+    prepNode(id, data, &nodeHolder);
+    nodeHolder->next = NULL;
+    nodeHolder->prev = position;
+    position->next = nodeHolder;
+
+    /*
     Node* newNode = new Node;
     newNode->data.id = id;
     newNode->data.data = *data;
@@ -253,9 +249,19 @@ void LinkedList::addTail(int id, string *data, Node* position){
     newNode->next = NULL;
     newNode->prev = position;
     position->next = newNode;
+    */
 }
 
-void LinkedList::addMiddle(int id, string* data, Node* position){
+void LinkedList::addMiddle(int id, string* data, Node* position, Node* nodeHolder){
+    prepNode(id, data, &nodeHolder);
+
+    nodeHolder->next = position;
+    nodeHolder->prev = position->prev;
+    position->prev->next = nodeHolder;
+    position->prev = nodeHolder;
+
+
+    /*
     Node* newNode = new Node;
     newNode->data.id = id;
     newNode->data.data = *data;
@@ -264,6 +270,7 @@ void LinkedList::addMiddle(int id, string* data, Node* position){
     newNode->prev = position->prev;
     position->prev->next = newNode;
     position->prev = newNode;
+    */
 }
 
 void LinkedList::prepNode(int id, string *data, Node** nodeHolder){
