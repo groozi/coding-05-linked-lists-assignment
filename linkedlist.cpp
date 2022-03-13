@@ -114,6 +114,45 @@ void LinkedList::addMiddle(int id, string* data, Node* position){
     position->prev = newNode;
 }
 
+bool LinkedList::deleteNode(int id){
+    Node* position = head;
+    bool deleted; 
+
+    if (id < 0 || position == NULL){
+        deleted = false;
+    }
+    else{
+        while (id != position->data.id && position->next != NULL){
+            position = position->next;
+        }
+
+        if (id == position->data.id){
+            position->prev->next = position->next;
+            position->next->prev = position->prev;
+            delete(position);
+            deleted = true;
+        } else{
+            deleted = false;
+        }
+    }
+
+    return deleted;
+}
+
+
+int LinkedList::getCount(){
+    Node* position = head;
+    int count = 0;
+
+    if (position != NULL){
+       while(position){
+        count++;
+        position = position->next;
+        } 
+    }
+    return count;
+}
+
 
 
 

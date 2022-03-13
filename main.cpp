@@ -63,11 +63,20 @@ int main() {
 
 
 
-/*
+
     cout << "checking list...\n";
     cout << "\tThere are " << list.getCount() << " nodes." << endl;
     list.printList();
     cout << endl;
+
+    int num = 12;
+
+    cout << "attempting to delete node.... 12" << endl;
+    list.deleteNode(num);
+    list.printList(flag);
+
+
+    /*
 
     //adding all the test data to the list
     for (int i = 0; i < numTestData; i++) {
@@ -80,6 +89,7 @@ int main() {
         }
     }
     cout << endl;
+    
 
     cout << "checking list forward...\n";
     cout << "\tThere are " << list.getCount() << " nodes." << endl;
