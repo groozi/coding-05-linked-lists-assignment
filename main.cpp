@@ -95,6 +95,20 @@ int main() {
     } else {
         cout << "exists unsuccessful... " << endl;
     }
+
+
+
+    cout << "attempting to clear the linked list..." << endl;
+    if (list.clearList()){
+        cout << "clear list successfull" << endl;
+    } else {
+        cout << "could not clear the list" << endl;
+    }
+
+    list.printList(flag);
+
+    
+
     
     
 

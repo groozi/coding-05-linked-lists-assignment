@@ -187,6 +187,22 @@ bool LinkedList::exists(int id){
     return nodeFound;
 }
 
+bool LinkedList::clearList(){
+    Node* position = head;
+    bool listCleared = false;
+
+    while (position != NULL){
+        head = position->next;
+        delete position;
+        position = position->next;
+    }
+    delete (head);
+    if (head==NULL){
+        listCleared = true;
+    }
+
+    return listCleared;
+}
 
 
 

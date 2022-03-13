@@ -15,12 +15,14 @@ class LinkedList {
 public:
 
     LinkedList();
+    //~LinkedList();
     void printList(bool = false); //if bool is false, list will print forward
     bool addNode(int, string*); 
     int getCount();
     bool deleteNode(int); 
     bool getNode(int, Data*);
     bool exists(int);
+    bool clearList();
 
 private:
     Node *head;
