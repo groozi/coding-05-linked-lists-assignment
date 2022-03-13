@@ -16,21 +16,22 @@ public:
 
     LinkedList();
     ~LinkedList();
-    void printList(bool = false); //if bool is false, list will print forward
-    bool addNode(int, string*); 
-    int getCount();
+    bool addNode(int, string*);
     bool deleteNode(int); 
-    bool getNode(int, Data*);
-    bool exists(int);
+    bool getNode(int, Data*); 
+    void printList(bool = false);
+    int getCount();
     bool clearList();
+    bool exists(int);
 
 private:
     Node *head;
-    void addHead(int, string*, Node*, Node*);
-    void addTail(int, string*, Node*);
-    void addMiddle(int, string*, Node*);
-    void prepNode(int, string*, Node**);
 
+    void prepNode(int, string*, Node**);
+    void addHead(int, string*, Node*, Node*);
+    void addTail(int, string*, Node*, Node*);
+    void addMiddle(int, string*, Node*, Node*);
+    
 };
 
 #endif //LINKEDLIST_H
