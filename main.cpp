@@ -27,25 +27,6 @@ int main() {
     LinkedList list;
     cout << "done" << endl << endl;
 
-
-    int y = 12;
-    int h = 2;
-    int o = 1;
-
-    std::string practiceString1 = "worldddd...";
-    std::string practiceString2 = ":)";
-    std::string practiceString3 = "helllllo";
-
-    list.addNode(y, &practiceString1);
-    list.printList();
-    std::cout << std::endl;
-    list.addNode(h, &practiceString2);
-    list.printList();
-    std::cout << std::endl;
-    list.addNode(o, &practiceString3);
-    list.printList();
-    
-    /*
     cout << "checking list...\n";
     cout << "\tThere are " << list.getCount() << " nodes." << endl;
     list.printList();
@@ -132,7 +113,6 @@ int main() {
     list.printList();
     cout << endl;
 
-    */
 
     return 0;
 }
